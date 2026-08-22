@@ -1,0 +1,19 @@
+<!-- // JSON é um formato de anotação de dados amplamente utilizado em JS e outras linguagens.  -->
+<!-- // Sua aplicação é comum, facilita a troca de dados entre serviço atraves de uma estrutura chave-valor.  -->
+<!-- // ex: consumo de API, integração de sistemas, armazenamento de dados -->
+<!-- Json formartter -->
+
+<html>
+<body>
+  <pre id="json"></pre>
+  <script>
+    const jsonObject = {
+      "name": "John",
+      "age": 30,
+      "city": "New York"
+    };
+    const formattedJson = JSON.stringify(jsonObject, null, 4);
+    document.getElementById("json").textContent = formattedJson;
+  </script>
+</body>
+</html>
