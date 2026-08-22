@@ -60,12 +60,18 @@ class Apartamento extends Imovel {
     this.possuiElevador = possuiElevador;
   }
   descrever() {
-    let descricao = `Apartamento localizada em ${this.endereco},
-    no ${this.numeroAndar} andar de tamanho ${this.tamanho}m²,`;
+    try {
+      this.validar();
+      let descricao = `Apartamento localizado em ${this.endereco},
+      no ${this.numeroAndar} andar e tamanho ${this.tamanho} m²,`;
     
-    // operador ternário (simplifica a operação tipo if/ else usando ? e :)
-    descricao += this.possuiElevador ? " e possui elevador." : " e não possui elevador.";
+      descricao += this.possuiElevador ? " e possui elevador." : " e não possui elevador.";
+      return descricao;
 
+    } catch (error) {
+      throw new Error(`Erro ao descrever o apartamento: ${error.message}`);
+    }
+    
     return descricao;
   }
   
@@ -73,7 +79,12 @@ class Apartamento extends Imovel {
 
 // função para descrever o imóvel(polimorfismo)
 function descreverImovel(imovel) {
-  console.log(imovel.descrever());
+  // console.log(imovel.descrever());
+  try {
+    console.log(imovel.descrever())
+  } catch (error) {
+    console.log(error.message)
+  }
 }
 
 // Criação de objetos
@@ -82,3 +93,6 @@ const meuApartamento = new Apartamento("Rua B", 85, 11, true);
 
 descreverImovel(minhaCasa);
 descreverImovel(meuApartamento);
+
+const casaInvalida = new Casa ("", 0, "verde", 2, false);
+descreverImovel(casaInvalida);
