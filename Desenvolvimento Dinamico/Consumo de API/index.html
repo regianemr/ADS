@@ -25,8 +25,8 @@
             margin-bottom: 2em;
         }
         #eventoSection {
-          padding: 1em;
-          border: 1px solid #ccc;
+            padding: 1em;
+            border: 1px solid #ccc;
         }
     </style>
     </head>
@@ -37,7 +37,7 @@
                 <a href="#apresentacao" class="text-white">Apresentação</a> |
                 <a href="#estruturacao" class="text-white">Estruturação</a> |
                 <a href="#formulario" class="text-white">Formulário</a> |
-                <a href="#multimidia" class="text-white">Multimídia</a>
+                <a href="#multimidia" class="text-white">Multimídia</a> |
                 <a href="#eventos" class="text-white">Eventos</a>
             </nav>        
         </header>
@@ -95,20 +95,30 @@
             <section id="eventos">
                 <h2>Eventos</h2>
                 <div id="eventoSection">
-                  <button id="clickButton" class="btn btn-secondary">Clique aqui</button>
-                  <div id="mouseOverOutDiv" style="height: 50px; width: 100px; background-color: lightblue; margin-top: 1em;">
-                    Passe o mouse aqui
-                  </div>
-                  <button id="mouseDownUpButton" class="btn btn-secondary" style="margin-top: 1em;"> Pressione e solte</button>
-                  <input type="text" id="keyInput" class="form-control" placeholder="Pressione uma tecla" style="margin-top: 1em;">
-                  <input type="text" id="focusBlurInput" class="form-control" placeholder="Clique aqui e depois saia" style="margin-top: 1em;">
-                </div>
-                <h3>Áudio</h3>
-                <audio controls>
-                    <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
-                    Seu navegador não suporta o elemento de áudio.
-                </audio>
+                    <button id="clickButton" class="btn btn-secondary">Clique aqui</button>
+                    <div id="mouseOverOutDiv"
+                        style="height: 50px; width: 100px;
+                         background-color: lightblue; margin-top: 1em;">
+                        Passe o mouse aqui</div>        
+                    <button id="mouseDownUpButton" class="btn btn-secondary"
+                        style="margin-top: 1em;">Pressione e solte</button>
+                    
+                    <input type="text" id="keyInput" 
+                        class="form-control" placeholder="Pressione uma tecla" style="margin-top: 1em;">
+
+                    <input type="text" id="focusBlurInput" class="form-control"
+                        placeholder="Clique aqui e depois saia" style="margin-top: 1em;">
+                </div>        
             </section>
+
+            <section id="api">
+                <h2>Consumo API Externa</h2>
+                <div style="margin: 1em;" id="apiSection">
+                    <button id="callApi" style="margin-bottom: 1em;" class="btn btn-secondary">
+                Chamar API Externa</button>
+                </div>
+          </section>
+    
         </main>
         
         <footer>
@@ -153,101 +163,119 @@
             // Adicionando o novo elemento ao DOM
             document.body.appendChild(newDiv);
 
-            // Manipulação de estilos (CSS) usando o querySelector
+            // Manipulação de Estilos (CSS)
             const mainContent = document.querySelector('main');
             mainContent.style.padding = '5em';
             mainContent.style.backgroundColor = '#e0e0e0';
 
-            // Manipulação de conteúdo
+            // Manipulação de Conteúdo
             const h1Element = document.querySelector('h1');
-            h1Element.textContent = 'Título atualizado dinamicamente';
+            h1Element.textContent = 'Título Atualizado Dinamicamente';
 
-            // Manipulação de eventos
+            // Manipulação de Atributos
+            const imgElement = document.querySelector('img');
+            imgElement.setAttribute('alt', 'Imagem de Exemplo Atualizada');
+            imgElement.setAttribute('src', 'https://via.placeholder.com/200');
+
+            // Manipulação de Eventos
             const submitButton = document.querySelector('button[type="submit"]');
             submitButton.addEventListener('click', function(event) {
-              event.preventDefault();
-              alert('Formulário enviado!');
+                event.preventDefault();
+                alert('Formulário enviado!');
             });
+
+            // Navegação no DOM
+            const secondSection = document.querySelectorAll('section')[1];
+            const nextSection = secondSection.nextElementSibling;
+            if (nextSection) {
+                nextSection.style.border = '2px dashed #000';
+            }
+
+            // Remoção de Elementos
+            const footerElement = document.querySelector('footer');
+            footerElement.remove();
 
             // Eventos de Clique
             const clickButton = document.getElementById('clickButton');
-            clickButton.addEventListener('click', function(){
-              alert('Botão clicado!');
+            clickButton.addEventListener('click', function() {
+                alert('Botão clicado!');
             });
-            
+
             // Eventos de Mouseover e Mouseout
             const mouseOverOutDiv = document.getElementById('mouseOverOutDiv');
             mouseOverOutDiv.addEventListener('mouseover', function() {
-              mouseOverOutDiv.style.backgroundColor = 'lightgreen';
+                mouseOverOutDiv.style.backgroundColor = 'lightgreen';
             });
-
+            
             mouseOverOutDiv.addEventListener('mouseout', function() {
-              mouseOverOutDiv.style.backgroundColor = 'lightblue';
+                mouseOverOutDiv.style.backgroundColor = 'lightblue';
             });
 
             // Eventos de Mousedown e Mouseup
             const mouseDownUpButton = document.getElementById('mouseDownUpButton');
             mouseDownUpButton.addEventListener('mousedown', function() {
-              mouseDownUpButton.textContent = 'Botão pressionado';
+                mouseDownUpButton.textContent = 'Botão pressionado';
             });
-
+            
             mouseDownUpButton.addEventListener('mouseup', function() {
-              mouseDownUpButton.textContent = 'Pressione e solte';
+                mouseDownUpButton.textContent = 'Pressione e solte';
             });
 
             // Eventos de Teclado
             const keyInput = document.getElementById('keyInput');
             keyInput.addEventListener('keydown', function(event) {
-              console.log('Tecla pressionada:', event.key);
+                console.log('Tecla pressionada:', event.key);
             });
-
+            
             keyInput.addEventListener('keyup', function(event) {
-              console.log('Tecla liberada:', event.key);
+                console.log('Tecla liberada:', event.key);
             });
-
+            
             keyInput.addEventListener('keypress', function(event) {
-              console.log('Tecla que produz caractere pressionada:', event.key);
+                console.log('Tecla que produz caractere pressionada:', event.key);
             });
 
-            // Evento de botão - envio de formulário (submit)
+            // Eventos de Envio de Formulário (submit)
             const contatoForm = document.forms['contatoForm'];
             contatoForm.addEventListener('submit', function(event) {
-              event.preventDefault();
-              alert('Formulário enviado com sucesso!');
+                event.preventDefault();
+                alert('Formulário enviado com sucesso!');
             });
 
-            // Evento de botão  (click)
+            // Eventos de Clique em Botão (click)
             const clickExampleButton = document.getElementById('clickButton');
             clickExampleButton.addEventListener('click', function() {
-              alert('Botão de clique acionado!');
+                alert('Botão de clique acionado!');
             });
-
-            // Evento de botão - redefinição de formulário (reset)
+            
+            // Eventos de Redefinição de Formulário (reset)
             const resetButton = document.querySelector('button[type="reset"]');
             resetButton.addEventListener('click', function() {
-              alert('Formulário redefinido!');
+                alert('Formulário redefinido!');
             });
 
-            // Evento de foco
-            const focusBlurInput = document.getElementById('focusBlurInput');
-            focusBlurInput.addEventListener('focus', function() {
-              focusBlurInput.style.backgroundColor = 'lightyellow';
+             // Eventos de Foco
+             const focusBlurInput = document.getElementById('focusBlurInput');
+             focusBlurInput.addEventListener('focus', function() {
+                focusBlurInput.style.backgroundColor = 'lightyellow';
             });
 
             focusBlurInput.addEventListener('blur', function() {
-              focusBlurInput.style.backgroundColor = 'white';
+                focusBlurInput.style.backgroundColor = 'white';
             });
 
-            // Eventos de tempo
+            // Eventos de Tempo
             setTimeout(function() {
-              alert('Este alerta aparece após 3 segundos!');
+                alert('Este alerta aparece após 3 segundos!');
             }, 3000);
 
             setInterval(function() {
-              console.log('Este log aparece a cada 5 segundos.');
+                console.log('Este log aparece a cada 5 segundos');
             }, 5000);
-
+            
         </script>
+
         <script type="text/javascript" src="api.js"></script>
+
     </body>
 </html>
